@@ -436,13 +436,14 @@ footer {
     color: white;
     border: none;
     /* padding: 10px 15px; */
-    font-size: 15px;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .showcase-nav:hover {
-    background-color: rgba(111, 104, 104, 0.5);
+/*    background-color: rgba(111, 104, 104, 0.5);  */
+    background-color: #f28482;
 }
 
 .showcase-nav.previous-btn {
@@ -466,8 +467,8 @@ footer {
 }
 
 .dot {
-    height: 10px;
-    width: 10px;
+    height: 15px;
+    width: 15px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
@@ -477,5 +478,5 @@ footer {
 }
 
 .dot.active {
-    background-color: #717171;
+    background-color: #f28482;
 }
