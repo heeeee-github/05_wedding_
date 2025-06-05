@@ -7,9 +7,9 @@ window.addEventListener('load', function() {
 
 // Calendar
 function generateCalendar() {
-    const weddingDate = new Date(2024, 9, 27); // 10월은 9
-    const startDate = new Date(2024, 9, 1);
-    const endDate = new Date(2024, 9, 31);
+    const weddingDate = new Date(2025, 8, 27); //9월은 8
+    const startDate = new Date(2025, 8, 1);
+    const endDate = new Date(2025, 8, 30);
     
     const calendar = document.getElementById('calendar');
     
@@ -44,7 +44,7 @@ function generateCalendar() {
 
 // D-day countdown
 function updateDday() {
-    const weddingDate = new Date(2024, 9, 27, 14, 0, 0);
+    const weddingDate = new Date(2025, 8, 27, 13, 20, 0);
     const now = new Date();
     const diff = weddingDate - now;
     
