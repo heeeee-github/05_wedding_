@@ -150,24 +150,27 @@ document.addEventListener('DOMContentLoaded', function() {
 function setupCopyAccountButtons() {
     const copyAccountButtons = document.querySelectorAll('.copy-account-btn');
     copyAccountButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const accountNumber = this.getAttribute('data-account');
             navigator.clipboard.writeText(accountNumber).then(() => {
                 alert('계좌번호가 복사되었습니다.');
+            }).catch(err => {
+                console.error('복사 실패:', err);
             });
         });
     });
 }
 
-
 // Copy address number
 function setupCopyAddressButtons() {
     const copyAddressButtons = document.querySelectorAll('.copy-address-btn');
     copyAddressButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const address = this.getAttribute('address');
+        button.addEventListener('click', function () {
+            const address = this.getAttribute('data-address');
             navigator.clipboard.writeText(address).then(() => {
                 alert('주소가 복사되었습니다.');
+            }).catch(err => {
+                console.error('복사 실패:', err);
             });
         });
     });
