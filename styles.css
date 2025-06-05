@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;700&display=swap');
+
+/* 기본 스타일 리셋 */
+ul {
+    list-style: none; /* 기본 점, 숫자 제거 */
+    padding: 0;       /* 기본 패딩 제거 */
+    margin: 0;        /* 기본 마진 제거 */
+}
+
+:root {
+    --primary-color: #ffe6e3;
+    --primary-hover: #f28482;
+    --text-color: #001223;
+    --secondary-color: #6d597a;
+    --background-color: #f9f7f5; /*#f9f7f5*/
+    --white: #ffffff;
+}
+
+/* Global Styles */
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {touch-action: pan-x pan-y; /* 핀치 줌을 방지합니다 */}
+body {
+    font-family: 'Noto Serif KR', serif;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5px 15px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Typography */
+h1{
+    display: none;
+}
+
+h2, h3 {
+    font-size: 1.0em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+p {
+    font-size: 0.8em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+/* Images */
+.inline-image {
+    vertical-align: middle;
+    height: 20px;
+    margin: 0 0 5px 0;
+}
+
+.main-image {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    object-fit: cover; /* 이미지가 잘리지 않도록 조정 */
+}
+
+.main-image:hover {
+    transform: scale(1.35);
+}
+
+
+.gallery-image {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 1.0s ease;
+}
+
+.gallery-image:hover {
+    transform: scaleX(3.1) scaleY(3.4);
+}
+
+/* Sections */
+.section {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.section h3 span {
+    color: var(--primary-hover);
+}
+.section p span {
+    font-weight: bold;
+}
+
+/* Buttons */
+.copy-address-btn , .contact-list a , .copy-account-btn {
+    display: inline-block;
+    padding: 3px 7px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.btn_naver {
+    display: inline-block;
+    padding: 3px 7px;
+    background-color: #03c75a;
+    color: var(--text-color);
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.6em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn_kakao {
+    display: inline-block;
+    padding: 3px 7px;
+    background-color: #fae100;
+    color: var(--text-color);
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.6em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn_T {
+    display: inline-block;
+    padding: 3px 7px;
+    background-color: #6100ff;
+    color: var(--white);
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.6em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover, .copy-btn:hover, #contactBtn:hover, .contact-list a:hover {
+    background-color: var(--primary-hover);
+    color: var(--white);
+}
+
+#contactBtn {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#contactBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn-icon {
+    vertical-align: middle;
+    height: 20px;
+    margin-right: 8px;
+}
+
+/* Calendar */
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    font-size: 0.8em;
+}
+
+.calendar-day.wedding-day {
+    background-color: var(--primary-hover);
+    color: var(--white);
+    font-weight: bold;
+}
+
+#dday {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-top: 20px;
+    color: var(--primary-hover);
+}
+
+/* Gallery */
+#galleryImages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--secondary-color);
+    width: 80%;
+    max-width: 300px;
+    border-radius: 10px;
+    font-family: 'Noto Serif KR', serif;
+    color: var(--text-color);
+}
+
+.close {
+    color: var(--primary-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--text-color);
+}
+
+/* Contact List */
+.contact-list {
+    list-style-type: none;
+    padding: 0;
+}
+.contact-list h3{
+    text-align: left;
+}
+
+
+.contact-list li {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.contact-link:hover {
+    background-color: #f28482;
+}
+
+
+/* Accounting Section */
+#accounting h3 {
+    color: var(--text-color);
+    font-size: 1.0em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+#accounting .account-info {
+    font-weight: 200;
+}
+
+#accounting li {
+    list-style-type: none;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7em;
+}
+
+#accounting li span {
+    padding: 0 5px 0 0 ;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    color: var(--secondary-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Flower Petals */
+#flower-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.flower-petal {
+    position: absolute;
+    background-image: url('./img/petal.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    animation: falling linear infinite;
+}
+
+@keyframes falling {
+    0% { transform: translate(0, -10vh) rotate(0deg); }
+    100% { transform: translate(20vw, 110vh) rotate(720deg); }
+}
+
+.image-container {
+    position: relative;
+  }
+  
+  .image-container img {
+    display: block;
+  }
+  
+  .image-container:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0);
+    /* pointer-events: none; */
+  }
+  
+
+  /* .watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    font-size: 48px;
+    color: red;
+    z-index: 1000;
+    pointer-events: none;
+    } */
+
+
+/*////////////////////////////////*/
+
+.photo-showcase {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.showcase-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    /* padding-bottom: 75%; 4:3 aspect ratio */
+    padding-bottom: 150%; /* 4:3 aspect ratio */
+    overflow: hidden;
+}
+
+.showcase-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.5s ease-in-out;
+    border-radius: 13px;
+}
+
+.showcase-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(111, 104, 104, 0.5);
+    color: white;
+    border: none;
+    /* padding: 10px 15px; */
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.showcase-nav:hover {
+    background-color: rgba(111, 104, 104, 0.5);
+}
+
+.showcase-nav.previous-btn {
+    left: 5px;
+}
+
+.showcase-nav.next-btn {
+    right: 5px;
+}
+
+.image-tracker {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
+.dot-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #717171;
+}
