@@ -68,7 +68,7 @@ function loadGalleryImages() {
 */
 
 //Gallery 2
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const showcaseImage = document.getElementById('showcaseImage');
     const previousBtn = document.getElementById('previousBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -78,12 +78,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentImageIndex = 1;
     const totalImages = 21;
     const imageBasePath = './img';
-    const imagesToPreload = 5;
+    const imagesToPreload = 5; // 미리 로드할 이미지 수
     const loadedImages = new Set();
 
+    // 터치 좌표 저장 변수
     let touchStartX = 0;
     let touchEndX = 0;
-    const minSwipeDistance = 50;
+    const minSwipeDistance = 50; // 최소 스와이프 거리(px)
 
     function preloadImage(index) {
         if (loadedImages.has(index)) return;
@@ -99,35 +100,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function animateImageTransition(nextIndex, direction = 'left') {
-        const img = showcaseImage;
-
-        // 초기 상태 설정 (슬라이드 진입 방향)
-        img.style.transition = 'none';
-        img.style.transform = (direction === 'left') ? 'translateX(100%)' : 'translateX(-100%)';
-
-        // 이미지 소스 변경
-        img.src = `${imageBasePath}/img_${nextIndex}.jpg`;
-
-        // 다음 프레임에서 슬라이드 애니메이션 적용
-        requestAnimationFrame(() => {
-            img.style.transition = 'transform 0.3s ease-in-out';
-            img.style.transform = 'translateX(0)';
-        });
-
-        currentImageIndex = nextIndex;
-        preloadSurroundingImages(currentImageIndex);
+    function displayImage(imageIndex) {
+        showcaseImage.style.backgroundImage = `url(${imageBasePath}/img_${imageIndex}.jpg)`;
+        imageTracker.textContent = `${imageIndex} / ${totalImages}`;
+        preloadSurroundingImages(imageIndex);
         updateDotIndicators();
     }
 
     function showNextImage() {
-        const nextIndex = currentImageIndex % totalImages + 1;
-        animateImageTransition(nextIndex, 'left');
+        currentImageIndex = currentImageIndex % totalImages + 1;
+        displayImage(currentImageIndex);
     }
 
     function showPreviousImage() {
-        const prevIndex = (currentImageIndex - 2 + totalImages) % totalImages + 1;
-        animateImageTransition(prevIndex, 'right');
+        currentImageIndex = (currentImageIndex - 2 + totalImages) % totalImages + 1;
+        displayImage(currentImageIndex);
     }
 
     function createDotIndicators() {
@@ -135,8 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const dot = document.createElement('span');
             dot.className = 'dot';
             dot.addEventListener('click', () => {
-                const direction = (i > currentImageIndex) ? 'left' : 'right';
-                animateImageTransition(i, direction);
+                currentImageIndex = i;
+                displayImage(currentImageIndex);
             });
             dotContainer.appendChild(dot);
         }
@@ -149,34 +136,45 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 터치 이벤트 설정
-    showcaseImage.addEventListener('touchstart', function (event) {
+    // 터치 시작 이벤트
+    showcaseImage.addEventListener('touchstart', function(event) {
         touchStartX = event.changedTouches[0].screenX;
     });
 
-    showcaseImage.addEventListener('touchend', function (event) {
+    // 터치 종료 이벤트
+    showcaseImage.addEventListener('touchend', function(event) {
         touchEndX = event.changedTouches[0].screenX;
         handleSwipeGesture();
     });
 
     function handleSwipeGesture() {
         const distance = touchEndX - touchStartX;
-        if (Math.abs(distance) < minSwipeDistance) return;
+        if (Math.abs(distance) < minSwipeDistance) {
+            // 너무 짧은 거리의 터치는 무시
+            return;
+        }
 
         if (distance > 0) {
+            // 오른쪽으로 스와이프 -> 이전 이미지
             showPreviousImage();
         } else {
+            // 왼쪽으로 스와이프 -> 다음 이미지
             showNextImage();
         }
     }
 
-    // 초기화
+    // 초기 이미지들 프리로드
     for (let i = 1; i <= imagesToPreload; i++) {
         preloadImage(i);
     }
 
+    // 도트 인디케이터 생성
     createDotIndicators();
-    animateImageTransition(currentImageIndex);
+
+    // 초기 이미지 표시
+    displayImage(currentImageIndex);
+
+    // 버튼 클릭 이벤트 리스너 추가
     nextBtn.addEventListener('click', showNextImage);
     previousBtn.addEventListener('click', showPreviousImage);
 });
