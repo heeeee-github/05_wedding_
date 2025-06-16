@@ -81,6 +81,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const imagesToPreload = 5; // 미리 로드할 이미지 수
     const loadedImages = new Set();
 
+    // 터치 좌표 저장 변수
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const minSwipeDistance = 50; // 최소 스와이프 거리(px)
+
     function preloadImage(index) {
         if (loadedImages.has(index)) return;
         const img = new Image();
@@ -97,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayImage(imageIndex) {
         showcaseImage.style.backgroundImage = `url(${imageBasePath}/img_${imageIndex}.jpg)`;
-        // imageTracker.textContent = `${imageIndex} / ${totalImages}`;
+        imageTracker.textContent = `${imageIndex} / ${totalImages}`;
         preloadSurroundingImages(imageIndex);
         updateDotIndicators();
     }
@@ -131,6 +136,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // 터치 시작 이벤트
+    showcaseImage.addEventListener('touchstart', function(event) {
+        touchStartX = event.changedTouches[0].screenX;
+    });
+
+    // 터치 종료 이벤트
+    showcaseImage.addEventListener('touchend', function(event) {
+        touchEndX = event.changedTouches[0].screenX;
+        handleSwipeGesture();
+    });
+
+    function handleSwipeGesture() {
+        const distance = touchEndX - touchStartX;
+        if (Math.abs(distance) < minSwipeDistance) {
+            // 너무 짧은 거리의 터치는 무시
+            return;
+        }
+
+        if (distance > 0) {
+            // 오른쪽으로 스와이프 -> 이전 이미지
+            showPreviousImage();
+        } else {
+            // 왼쪽으로 스와이프 -> 다음 이미지
+            showNextImage();
+        }
+    }
+
     // 초기 이미지들 프리로드
     for (let i = 1; i <= imagesToPreload; i++) {
         preloadImage(i);
@@ -142,11 +174,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 초기 이미지 표시
     displayImage(currentImageIndex);
 
-    // 이벤트 리스너 추가
+    // 버튼 클릭 이벤트 리스너 추가
     nextBtn.addEventListener('click', showNextImage);
     previousBtn.addEventListener('click', showPreviousImage);
 });
-
 
 
 
