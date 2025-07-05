@@ -76,9 +76,9 @@ p {
     object-fit: cover; /* 이미지가 잘리지 않도록 조정 */
 }
 
-.main-image:hover {
+/*.main-image:hover {
     transform: scale(1.35);
-}
+}*/
 
 
 .gallery-image {
